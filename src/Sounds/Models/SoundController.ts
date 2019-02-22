@@ -1,6 +1,6 @@
 import { Howl } from 'howler'
 import _ from 'lodash'
-import { Sound, SoundConfig, CrossfadeParams } from './Sound'
+import { Sound, SoundConfig } from './Sound'
 
 const SOUNDS_ASSETS_PATH = '../../assets/sounds/'
 
@@ -43,7 +43,7 @@ export class SoundController {
     this.howl.on('end', this.onSoundEnd)
   }
 
-  public play() {
+  public play(): Sound | null {
     switch (this.playMode) {
       case SoundPlayMode.SingleBlock:
         return this.playSingleBlock()
@@ -54,7 +54,7 @@ export class SoundController {
     }
   }
 
-  private _play() {
+  private _play(): Sound {
     const soundId = this.howl.play()
     const sound = new Sound({
       id: soundId,
@@ -65,19 +65,21 @@ export class SoundController {
       ...this.soundMap,
       [soundId]: sound,
     }
+
+    return sound
   }
 
-  private playSingleBlock() {
-    if(this.sounds.length) { return }
-    this._play()
+  private playSingleBlock(): Sound | null {
+    if(this.sounds.length) { return null }
+    return this._play()
   }
 
-  private playSingleRestart() {
+  private playSingleRestart(): Sound {
     if(this.sounds.length) {
       const sound = this.sounds[0]
       sound.stop()
     }
-    this._play()
+    return this._play()
   }
 
   public fade(fadeTo: number, duration: number) {
@@ -89,17 +91,6 @@ export class SoundController {
     this.soundConfig.rate = rate
     for (const sound of this.sounds) {
       sound.setRate(rate)
-    }
-  }
-
-  public setCrossfade(crossfade: CrossfadeParams) {
-    this.soundConfig.crossfade = {
-      ...this.soundConfig.crossfade,
-      ...crossfade,
-    }
-
-    for (const sound of this.sounds) {
-      sound.setCrossfade(crossfade)
     }
   }
 
