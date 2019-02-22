@@ -1,14 +1,21 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { SoundController, SoundContainer } from '../Sounds'
 
 export default class Root extends React.Component {
-  render() {
+  private sound: SoundController
+
+  constructor(props: {}) {
+    super(props)
+
+    this.sound = new SoundController({
+      name: 'Crowd',
+      fileName: 'crowd.wav',
+    })
+  }
+
+  public render() {
     return (
-      <View>test</View>
+      <SoundContainer soundController={this.sound} />
     )
   }
 }
-
-const View = styled.div({
-  background: 'blue',
-})
