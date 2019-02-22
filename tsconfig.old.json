@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react",
+    "lib": ["dom", "es5", "es6", "esnext"],
+    "outDir": "./build",
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {},
+    "typeRoots": [
+        "node_modules/@types", 
+        "@types"
+    ],
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "pretty": true,
+    "sourceMap": true
+  },
+  "exlude": [
+    "node_modules",
+    "@types"
+  ]
+}
