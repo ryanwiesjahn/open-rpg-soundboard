@@ -9,6 +9,6 @@ export default class Root extends React.Component {
   }
 }
 
-const View = styled('div')({
+const View = styled.div({
   background: 'blue',
 })
