@@ -5,6 +5,7 @@ import { Waveform } from '../Models/Waveform'
 
 interface Props {
   fileSrc: string
+  className?: string
 }
 
 export class WaveformView extends React.Component<Props> {
@@ -26,7 +27,7 @@ export class WaveformView extends React.Component<Props> {
 
   public render() {
     return (
-      <View ref={this.containerViewRef}>
+      <View ref={this.containerViewRef} className={this.props.className}>
         <ResizeObserver onResize={this.draw} />
         <Canvas ref={this.canvasRef} />
       </View>
@@ -43,15 +44,20 @@ export class WaveformView extends React.Component<Props> {
 
     const width = containerView.clientWidth
     const height = containerView.clientHeight
-
+    
     canvas.width = width
     canvas.height = height
-
+    
     const context = canvas.getContext('2d')
+    const color = getComputedStyle(containerView).color
 
     if (!context) { return }
 
     context.clearRect(0, 0, width, height)
+
+    if (color) {
+      context.fillStyle = color
+    }
 
     const audioBuffer = await this.waveform.getAudioBuffer()
     const data = audioBuffer.getChannelData(0)
@@ -76,7 +82,7 @@ export class WaveformView extends React.Component<Props> {
 
 const View = styled.div({
   width: '100%',
-  height: 50,
+  height: '100%',
   overflow: 'hidden',
 })
 
