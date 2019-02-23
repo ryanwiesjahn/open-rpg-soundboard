@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { WaveformView } from './WaveformView'
 
 interface Props {
   name: string
+  fileSrc: string
   onPlay: () => void
   onChangeRate: (rate: number) => void
 }
@@ -12,6 +14,7 @@ export class SoundView extends React.Component<Props> {
     return (
       <View>
         <Name>{this.props.name}</Name>
+        <WaveformView fileSrc={this.props.fileSrc} />
         <Button onClick={this.props.onPlay}>Play</Button>
         <input type="range" min="10" max="30" defaultValue="10" onChange={this.onChangeRate} />
       </View>

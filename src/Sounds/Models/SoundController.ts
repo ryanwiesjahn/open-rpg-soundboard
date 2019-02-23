@@ -18,6 +18,7 @@ interface SoundParams {
 
 export class SoundController {
   public readonly name: string
+  public readonly fileName: string
   public readonly playMode: SoundPlayMode
 
   private howl: Howl
@@ -33,10 +34,11 @@ export class SoundController {
     playMode = SoundPlayMode.Multiple,
   }: SoundParams) {
     this.name = name
+    this.fileName = fileName
     this.playMode = playMode
 
     this.howl = new Howl({
-      src: [`${SOUNDS_ASSETS_PATH}${fileName}`],
+      src: [this.fileSrc],
       autoplay: false,
     })
 
@@ -100,5 +102,9 @@ export class SoundController {
 
   private get sounds(): Sound[] {
     return _.values(this.soundMap)
+  }
+
+  public get fileSrc(): string {
+    return `${SOUNDS_ASSETS_PATH}${this.fileName}`
   }
 }

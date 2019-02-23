@@ -13,6 +13,7 @@ export class SoundContainer extends React.Component<Props> {
     return (
       <SoundView
         name={this.props.soundController.name}
+        fileSrc={this.props.soundController.fileSrc}
         onPlay={this.onPlay}
         onChangeRate={this.onChangeRate}
       />
