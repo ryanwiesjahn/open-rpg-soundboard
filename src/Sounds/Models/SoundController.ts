@@ -91,9 +91,12 @@ export class SoundController {
 
   public setRate(rate: number) {
     this.soundConfig.rate = rate
-    for (const sound of this.sounds) {
-      sound.setRate(rate)
-    }
+    this.howl.rate(rate)
+  }
+
+  public setVolume(volume: number) {
+    this.soundConfig.volume = volume
+    this.howl.volume(volume)
   }
 
   private onSoundEnd = (soundId: number) => {

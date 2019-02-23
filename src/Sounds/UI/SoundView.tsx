@@ -4,6 +4,7 @@ import { Sound } from '../Models/Sound'
 
 interface Props {
   sound: Sound
+  className?: string
 }
 
 interface State {
@@ -29,7 +30,10 @@ export class SoundView extends React.Component<Props, State> {
     const { progressPercent: percentProgress } = this.state
 
     return (
-      <View percent={percentProgress} />
+      <View
+        className={this.props.className}
+        percent={percentProgress}
+      />
     )
   }
 

@@ -8,6 +8,7 @@ interface SoundParams {
 
 export interface SoundConfig {
   rate?: number
+  volume?: number
 }
 
 interface EventHandlerMap {
@@ -50,6 +51,10 @@ export class Sound {
 
     if (this.config.rate) {
       this.setRate(this.config.rate)
+    }
+
+    if (this.config.volume) {
+      this.setVolume(this.config.volume)
     }
   }
 
@@ -98,6 +103,10 @@ export class Sound {
 
   public setRate(rate: number) {
     this.howl.rate(rate, this.id)
+  }
+
+  public setVolume(volume: number) {
+    this.howl.volume(volume, this.id)
   }
 
   public get duration(): number {

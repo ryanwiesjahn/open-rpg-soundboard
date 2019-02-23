@@ -10,19 +10,19 @@ interface Props {
   sounds: Sound[]
   onPlay: () => void
   onChangeRate: (rate: number) => void
+  onChangeVolume: (volume: number) => void
+  className?: string
 }
 
 export class SoundControllerView extends React.Component<Props> {
   public render() {
     return (
-      <View>
+      <View className={this.props.className}>
         <Name>{this.props.name}</Name>
         <WaveformContainer>
           <WaveformView fileSrc={this.props.fileSrc} />
           {this.renderSounds()}
         </WaveformContainer>
-        <Button onClick={this.props.onPlay}>Play</Button>
-        <input type="range" min="10" max="30" defaultValue="10" onChange={this.onChangeRate} />
       </View>
     )
   }
@@ -33,10 +33,15 @@ export class SoundControllerView extends React.Component<Props> {
     ))
   }
 
-  private onChangeRate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const rate = Number.parseFloat(event.target.value) / 10
-    this.props.onChangeRate(rate)
-  }
+  // private onChangeRate = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const rate = Number.parseFloat(event.target.value) / 10
+  //   this.props.onChangeRate(rate)
+  // }
+
+  // private onChangeVolume = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const volume = Number.parseFloat(event.target.value) / 100
+  //   this.props.onChangeVolume(volume)
+  // }
 }
 
 const View = styled.div({
@@ -44,7 +49,6 @@ const View = styled.div({
 })
 
 const WaveformView = styled(_WaveformView)({
-  color: 'purple',
   height: 50,
 })
 

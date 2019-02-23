@@ -6,6 +6,7 @@ import {
 
 interface Props {
   soundController: SoundController
+  className?: string
 }
 
 export class SoundControllerContainer extends React.Component<Props> {
@@ -17,20 +18,26 @@ export class SoundControllerContainer extends React.Component<Props> {
         sounds={this.props.soundController.sounds}
         onPlay={this.onPlay}
         onChangeRate={this.onChangeRate}
+        onChangeVolume={this.onChangeVolume}
+        className={this.props.className}
       />
     )
   }
 
   private onPlay = () => {
-    this.sound.play()
+    this.soundController.play()
     this.forceUpdate() // TODO: Is this okay?
   }
 
   private onChangeRate = (rate: number) => {
-    this.sound.setRate(rate)
+    this.soundController.setRate(rate)
   }
 
-  private get sound(): SoundController {
+  private onChangeVolume = (volume: number) => {
+    this.soundController.setVolume(volume)
+  }
+
+  private get soundController(): SoundController {
     return this.props.soundController
   }
 }
