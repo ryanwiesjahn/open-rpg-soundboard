@@ -1,5 +1,5 @@
 import React from 'react'
-import { SoundController, SoundContainer } from '../Sounds'
+import { SoundController, SoundControllerContainer } from '../Sounds'
 
 export default class Root extends React.Component {
   private sound: SoundController
@@ -15,7 +15,7 @@ export default class Root extends React.Component {
 
   public render() {
     return (
-      <SoundContainer soundController={this.sound} />
+      <SoundControllerContainer soundController={this.sound} />
     )
   }
 }

@@ -1,4 +1,5 @@
 import { Howl } from 'howler'
+import _ from 'lodash'
 
 interface SoundParams {
   id: number
@@ -7,6 +8,14 @@ interface SoundParams {
 
 export interface SoundConfig {
   rate?: number
+}
+
+interface EventHandlerMap {
+  progress: () => void
+}
+
+type EventHandlers = {
+  [Key in keyof EventHandlerMap]: Array<EventHandlerMap[Key]>
 }
 
 const PROGRESS_THROTTLE = 50
@@ -18,6 +27,9 @@ export class Sound {
 
   private trackProgress: boolean
   private progressDuration: number
+  private eventHandlers: EventHandlers = {
+    progress: [],
+  }
 
   constructor({
     id,
@@ -52,13 +64,32 @@ export class Sound {
 
   // TODO: Should this be moved to SoundsController?
   private onProgress = () => {
-    console.log(this.position)
+    for (const handler of this.eventHandlers.progress) {
+      handler()
+    }
 
     if (this.trackProgress) {
       setTimeout(() => {
         requestAnimationFrame(this.onProgress)
       }, PROGRESS_THROTTLE)
     }
+  }
+
+  public addEventListener<T extends keyof EventHandlerMap>(
+    event: T,
+    callback: EventHandlerMap[T],
+  ) {
+    this.eventHandlers[event] = [
+      ...this.eventHandlers[event],
+      callback,
+    ]
+  }
+
+  public removeEventListener<T extends keyof EventHandlerMap>(
+    event: T,
+    callback: EventHandlerMap[T],
+  ) {
+    this.eventHandlers[event] = _.without(this.eventHandlers[event], callback)
   }
 
   public stop() {
@@ -78,6 +109,6 @@ export class Sound {
   }
 
   public get progressPercent(): number {
-    return this.progressDuration / this.duration
+    return this.position / this.duration * 100
   }
 }

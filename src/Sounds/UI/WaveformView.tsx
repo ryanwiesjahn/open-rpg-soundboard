@@ -34,6 +34,7 @@ export class WaveformView extends React.Component<Props> {
     )
   }
 
+  // TODO: Refactor this to be better
   private draw = async () => {
     if (!this.waveform) { return }
 

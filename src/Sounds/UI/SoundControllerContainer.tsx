@@ -1,19 +1,20 @@
 import React from 'react'
 import {
   SoundController,
-  SoundView,
+  SoundControllerView,
 } from '../index'
 
 interface Props {
   soundController: SoundController
 }
 
-export class SoundContainer extends React.Component<Props> {
+export class SoundControllerContainer extends React.Component<Props> {
   public render() {
     return (
-      <SoundView
+      <SoundControllerView
         name={this.props.soundController.name}
         fileSrc={this.props.soundController.fileSrc}
+        sounds={this.props.soundController.sounds}
         onPlay={this.onPlay}
         onChangeRate={this.onChangeRate}
       />
@@ -22,6 +23,7 @@ export class SoundContainer extends React.Component<Props> {
 
   private onPlay = () => {
     this.sound.play()
+    this.forceUpdate() // TODO: Is this okay?
   }
 
   private onChangeRate = (rate: number) => {

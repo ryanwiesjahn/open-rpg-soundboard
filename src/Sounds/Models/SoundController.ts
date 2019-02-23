@@ -24,7 +24,7 @@ export class SoundController {
   private howl: Howl
   private soundMap: {
     [soundId: number]: Sound
-  } = []
+  } = {}
 
   private soundConfig: SoundConfig = {}
 
@@ -100,7 +100,7 @@ export class SoundController {
     delete this.soundMap[soundId]
   }
 
-  private get sounds(): Sound[] {
+  public get sounds(): Sound[] {
     return _.values(this.soundMap)
   }
 

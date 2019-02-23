@@ -1,2 +1,2 @@
-export * from './SoundContainer'
-export * from './SoundView'
+export * from './SoundControllerContainer'
+export * from './SoundControllerView'

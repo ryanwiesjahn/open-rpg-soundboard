@@ -1,40 +1,50 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { WaveformView } from './WaveformView'
+import { Sound } from '../Models/Sound'
 
 interface Props {
-  name: string
-  fileSrc: string
-  onPlay: () => void
-  onChangeRate: (rate: number) => void
+  sound: Sound
 }
 
-export class SoundView extends React.Component<Props> {
+interface State {
+  progressPercent: number
+}
+
+export class SoundView extends React.Component<Props, State> {
+  private sound: Sound
+
+  constructor(props: Props) {
+    super(props)
+
+    this.sound = props.sound
+
+    this.state = {
+      progressPercent: this.sound.progressPercent,
+    }
+
+    this.sound.addEventListener('progress', this.onProgress)
+  }
+
   public render() {
+    const { progressPercent: percentProgress } = this.state
+
     return (
-      <View>
-        <Name>{this.props.name}</Name>
-        <WaveformView fileSrc={this.props.fileSrc} />
-        <Button onClick={this.props.onPlay}>Play</Button>
-        <input type="range" min="10" max="30" defaultValue="10" onChange={this.onChangeRate} />
-      </View>
+      <View percent={percentProgress} />
     )
   }
 
-  private onChangeRate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const rate = Number.parseFloat(event.target.value) / 10
-    this.props.onChangeRate(rate)
+  private onProgress = () => {
+    this.setState({ progressPercent: this.sound.progressPercent })
   }
 }
 
-const View = styled.div({
-  background: '#eeeeee',
-})
-
-const Name = styled.div({
-  fontWeight: 500,
-})
-
-const Button = styled.button({
-  
-})
+const View = styled.div((props: {
+  percent: number
+}) => ({
+  background: 'rgba(20, 40, 60, 0.3)',
+  height: '100%',
+  width: `${props.percent}%`,
+  position: 'absolute',
+  top: 0,
+  left: 0,
+}))
