@@ -3,11 +3,11 @@ export const theme = {
   color: {
     brand: {
       primary: '#EB5C47',
-      tweak: '#EB8A4F',
+      primaryTweak: '#EB8A4F',
     },
     background: {
-      primary: '#404454',
-      secondary: '#33353E',
+      primary: '#141416',
+      secondary: '#1D1D20',
       tertiary: '#21242B',
     },
     text: {
