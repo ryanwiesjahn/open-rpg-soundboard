@@ -20,11 +20,12 @@ module.exports = {
     ],
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.tsx?$/,
         loaders: ['ts-loader'],
         exclude: [/node_modules/, /@types/],
-      },
+      }
     ]
   },
 }
