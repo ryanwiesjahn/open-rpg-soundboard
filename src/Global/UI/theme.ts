@@ -13,7 +13,8 @@ export const theme = {
     text: {
       primary: '#cdcdcd',
       secondary: '#ffffff',
-      soft: 'rgba(255, 255, 255, 0.5)',
+      soft: 'rgba(255, 255, 255, 0.8)',
+      softer: 'rgba(255, 255, 255, 0.5)',
     },
   },
   font: {
