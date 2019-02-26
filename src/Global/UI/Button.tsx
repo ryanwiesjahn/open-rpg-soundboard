@@ -20,6 +20,7 @@ export const Button = styled.button((props: Props) => ({
   display: 'flex',
   alignItems: 'center',
   padding: 10,
+  textDecoration: 'none',
   position: 'relative',
   overflow: 'hidden',
   cursor: 'pointer',

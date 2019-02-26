@@ -10,8 +10,7 @@ export class SoundScapeView extends React.Component<Props> {
 
     return (
       <div>
-        <h1>Sound Scape</h1>
-        <span>{name}</span>
+        <h1>{name}</h1>
       </div>
     )
   }

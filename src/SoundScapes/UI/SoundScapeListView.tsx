@@ -10,6 +10,7 @@ import { soundScapeVariables } from './soundScapeVariables'
 interface Props {
   soundScapes: SoundScape[]
   className?: string
+  onSoundScapeAdd: () => void
 }
 
 export class SoundScapeListView extends React.Component<Props> {
@@ -17,7 +18,7 @@ export class SoundScapeListView extends React.Component<Props> {
     return (
       <View className={this.props.className}>
         {this.renderSoundScapeItems()}
-        <Button tertiary>
+        <Button tertiary onClick={this.onClick}>
           <Icon />
           <span>New Sound Scape</span>
         </Button>
@@ -27,9 +28,13 @@ export class SoundScapeListView extends React.Component<Props> {
 
   private renderSoundScapeItems = (): JSX.Element[] => (
     this.props.soundScapes.map((soundScape) => (
-      <SoundScapeItemContainer key={soundScape.name} soundScape={soundScape} />
+      <SoundScapeItemContainer key={soundScape.id} soundScape={soundScape} />
     ))
   )
+
+  private onClick = () => {
+    this.props.onSoundScapeAdd()
+  }
 }
 
 const View = styled.div({
