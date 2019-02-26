@@ -12,7 +12,12 @@ export class AppMainRoutes extends React.Component {
             Home
           </div>
         )} />
-        <Route path={APP_ROUTES.SOUND_SCAPE} component={SoundScapeContainer} />
+        <Route
+          path={APP_ROUTES.SOUND_SCAPE}
+          render={(props) => (
+            <SoundScapeContainer id={props.match.params.id} />
+          )}
+        />
       </Switch>
     )
   }

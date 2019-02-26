@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, generatePath } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '../../Global/UI'
@@ -22,7 +22,7 @@ export class SoundScapeItemView extends React.Component<Props> {
         <PlayButton secondary={!active}>
           <FontAwesomeIcon icon={['far', 'play-circle']} />
         </PlayButton>
-        <MainButton to={{ pathname: APP_ROUTES.SOUND_SCAPE, query: { id } }} secondary={!active}>
+        <MainButton to={generatePath(APP_ROUTES.SOUND_SCAPE, { id })} secondary={!active}>
           {name}
         </MainButton>
       </View>

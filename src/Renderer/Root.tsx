@@ -1,13 +1,16 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { MemoryRouter as Router } from 'react-router-dom'
-import { AppContainer } from '../App'
+import { AppContainer, appStore } from '../App'
 
 export default class Root extends React.Component {
   public render() {
     return (
-      <Router>
-        <AppContainer />
-      </Router>
+      <Provider store={appStore}>
+        <Router>
+          <AppContainer />
+        </Router>
+      </Provider>
     )
   }
 }
