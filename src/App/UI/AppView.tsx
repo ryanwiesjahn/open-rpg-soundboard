@@ -6,6 +6,7 @@ import { theme } from '../../Global'
 import '../../Global/UI/FontAwesomeLibrary'
 import 'typeface-roboto/index.css'
 import 'normalize.css/normalize.css'
+import { AppMainRoutes } from './AppMainRoutes';
 
 export class AppView extends React.Component {
   public render() {
@@ -16,9 +17,11 @@ export class AppView extends React.Component {
           <LeftPanel>
             <SoundScapeListContainer />
           </LeftPanel>
+
           <MainPanel>
-            Main
+            <AppMainRoutes />
           </MainPanel>
+
           <RightPanel>
             Right
           </RightPanel>

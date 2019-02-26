@@ -1,8 +1,6 @@
 import React from 'react'
-import {
-  SoundController,
-  SoundControllerView,
-} from '../index'
+import { SoundController } from '../Models'
+import { SoundControllerView } from './SoundControllerView'
 
 interface Props {
   soundController: SoundController

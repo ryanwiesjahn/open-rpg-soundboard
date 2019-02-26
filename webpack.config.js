@@ -13,9 +13,6 @@ module.exports = {
     publicPath: '/build/',
   },
   resolve: {
-    root: [
-      path.resolve('src'),
-    ],
     modules: [
       path.resolve('node_modules'),
       path.resolve('src')

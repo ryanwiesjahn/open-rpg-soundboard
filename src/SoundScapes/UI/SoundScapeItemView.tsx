@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '../../Global/UI'
 import { soundScapeVariables } from './soundScapeVariables'
+import { APP_ROUTES } from '../../App'
 
 interface Props {
+  id: UUID
   name: string
   active?: boolean
   className?: string
@@ -12,14 +15,14 @@ interface Props {
 
 export class SoundScapeItemView extends React.Component<Props> {
   public render() {
-    const { name, active, className } = this.props
+    const { id, name, active, className } = this.props
 
     return (
       <View className={className}>
         <PlayButton secondary={!active}>
           <FontAwesomeIcon icon={['far', 'play-circle']} />
         </PlayButton>
-        <MainButton secondary={!active}>
+        <MainButton to={{ pathname: APP_ROUTES.SOUND_SCAPE, query: { id } }} secondary={!active}>
           {name}
         </MainButton>
       </View>
@@ -35,7 +38,7 @@ const MainButton = styled(Button)({
   borderTopLeftRadius: 0,
   borderBottomLeftRadius: 0,
   flex: 1,
-})
+}).withComponent(Link)
 
 const PlayButton = styled(Button)({
   borderTopRightRadius: 0,

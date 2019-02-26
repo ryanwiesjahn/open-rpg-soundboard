@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppView } from '../index'
+import { AppView } from './AppView'
 import { SoundController, SoundPlayMode } from '../../Sounds'
 
 export class AppContainer extends React.Component {

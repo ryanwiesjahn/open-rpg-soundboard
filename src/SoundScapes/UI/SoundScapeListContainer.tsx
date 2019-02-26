@@ -1,5 +1,5 @@
 import React from 'react'
-import { SoundScapeListView } from '../index';
+import { SoundScapeListView } from './SoundScapeListView'
 import { SoundScape } from '../Models/SoundScape'
 
 interface Props {
@@ -14,10 +14,12 @@ export class SoundScapeListContainer extends React.Component<Props> {
 
     this.soundScapes = [
       new SoundScape({
+        id: '1',
         name: "Sound Scape 1",
         active: true,
       }),
       new SoundScape({
+        id: '2',
         name: "Sound Scape 2",
         active: false,
       }),
