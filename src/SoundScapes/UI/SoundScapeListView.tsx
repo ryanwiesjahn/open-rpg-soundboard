@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { FontAwesomeIcon, Props as IconProps } from '@fortawesome/react-fontawesome'
+import { withProps } from 'recompose'
 import { SoundScapeItemContainer as _SoundScapeItemContainer } from './SoundScapeItemContainer'
 import { SoundScape } from '../Models/SoundScape'
 import { Button as _Button } from '../../Global'
+import { soundScapeVariables } from './soundScapeVariables'
 
 interface Props {
   soundScapes: SoundScape[]
@@ -10,21 +13,14 @@ interface Props {
 }
 
 export class SoundScapeListView extends React.Component<Props> {
-  constructor(props: any) {
-    super(props)
-
-    console.log("HIT")
-    console.log(_SoundScapeItemContainer)
-  }
   public render() {
     return (
       <View className={this.props.className}>
         {this.renderSoundScapeItems()}
-        <Button>Test 1</Button>
-        <Button bordered>Test 1</Button>
-        <Button secondary>Test 2</Button>
-        <Button secondary bordered>Test 2</Button>
-        <Button tertiary>Test 3</Button>
+        <Button tertiary>
+          <Icon />
+          <span>New Sound Scape</span>
+        </Button>
       </View>
     )
   }
@@ -41,9 +37,19 @@ const View = styled.div({
 })
 
 const SoundScapeItemContainer = styled(_SoundScapeItemContainer)({
-  marginTop: 15,
+  marginBottom: 15,
 })
 
 const Button = styled(_Button)({
-  marginTop: 15,
+  width: '100%',
+  justifyContent: 'center',
 })
+
+const Icon = withProps<IconProps, any>({
+  icon: ['fas', 'plus'],
+})(styled(FontAwesomeIcon)({
+
+  marginRight: 10,
+  fontSize: soundScapeVariables.icon.fontSize,
+  lineHeight: soundScapeVariables.icon.lineHeight,
+}))

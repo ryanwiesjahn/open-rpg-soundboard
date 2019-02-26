@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { theme } from '../../Global/UI'
+import { Button } from '../../Global/UI'
+import { soundScapeVariables } from './soundScapeVariables'
 
 interface Props {
   name: string
@@ -11,47 +12,35 @@ interface Props {
 
 export class SoundScapeItemView extends React.Component<Props> {
   public render() {
+    const { name, active, className } = this.props
+
     return (
-      <View className={this.props.className} active={this.props.active}>
-        <PlayButton>
+      <View className={className}>
+        <PlayButton secondary={!active}>
           <FontAwesomeIcon icon={['far', 'play-circle']} />
         </PlayButton>
-        <Content>
-          {this.props.name}
-        </Content>
+        <MainButton secondary={!active}>
+          {name}
+        </MainButton>
       </View>
     )
   }
 }
 
-const View = styled.div((props: {
-  active?: boolean
-}) => ({
-  background: props.active ? theme.color.brand.primary : theme.color.background.tertiary,
-  borderTop: '1px solid rgba(255, 255, 255, 0.3)',
-  boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.1)',
-  color: theme.color.text.soft,
-  borderRadius: 6,
+const View = styled.div({
   display: 'flex',
-  overflow: 'hidden',
-}))
-
-const PlayButton = styled.button({
-  border: 'none',
-  borderRight: '1px solid rgba(255, 255, 255, 0.3)',
-  background: 'transparent',
-  color: theme.color.text.soft,
-  fontSize: '1.7rem',
-  lineHeight: '1rem',
-  padding: 10,
-
-  ['&:focus']: {
-    outline: 'none',
-  }
 })
 
-const Content = styled.div({
-  display: 'flex',
-  alignItems: 'center',
-  padding: 10,
+const MainButton = styled(Button)({
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
+  flex: 1,
+})
+
+const PlayButton = styled(Button)({
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
+  borderRightColor: 'rgba(255, 255, 255, 0.3)',
+  fontSize: soundScapeVariables.icon.fontSize,
+  lineHeight: soundScapeVariables.icon.lineHeight,
 })

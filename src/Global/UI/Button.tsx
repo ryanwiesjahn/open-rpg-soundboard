@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styled from '@emotion/styled'
 import { theme } from '../../Global/UI'
 import chroma from 'chroma-js'
@@ -7,28 +7,9 @@ interface Props {
   secondary?: boolean
   tertiary?: boolean
   bordered?: boolean
-  className?: string
 }
 
-export class Button extends React.Component<Props> {
-  public render() {
-    const { secondary, tertiary } = this.props
-
-    const View = tertiary ? TertiaryView : secondary ? SecondaryView : PrimaryView
-    return (
-      <View
-        className={this.props.className}
-        bordered={this.props.bordered}
-      >
-        {this.props.children}
-      </View>
-    )
-  }
-}
-
-const PrimaryView = styled.button((props: {
-  bordered?: boolean
-}) => ({
+export const Button = styled.button((props: Props) => ({
   background: props.bordered ? 'transparent' : theme.color.brand.primary,
   border: '1px solid transparent',
   borderTopColor: props.bordered ? undefined : 'rgba(255, 255, 255, 0.3)',
@@ -50,20 +31,21 @@ const PrimaryView = styled.button((props: {
   ['&:focus']: {
     outline: 'none',
   },
+
+  ...(props.secondary && secondaryStyles(props)),
+  ...(props.tertiary && tertiaryStyles(props)),
 }))
 
-const SecondaryView = styled(PrimaryView)((props: {
-  bordered?: boolean
-}) => ({
+const secondaryStyles = (props: Props) => ({
   background: props.bordered ? 'transparent' : theme.color.background.tertiary,
   borderColor: props.bordered ? theme.color.background.tertiary : undefined,
 
   ['&:hover']: {
     background: props.bordered ? 'rgba(255, 255, 255, 0.07)' : `${chroma(theme.color.background.tertiary).brighten(0.3)}`,
   },
-}))
+})
 
-const TertiaryView = styled(PrimaryView)({
+const tertiaryStyles = (props: Props) => ({
   background: 'transparent',
   border: `1px dotted ${theme.color.text.softer}`,
   color: theme.color.text.softer,
