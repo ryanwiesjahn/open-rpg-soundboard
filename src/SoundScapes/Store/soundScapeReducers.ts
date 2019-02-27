@@ -18,6 +18,7 @@ const initialData: SoundScapesState = {
       name: 'Sound Scape 1',
       active: true,
       soundControllers: [{
+        id: '1',
         name: 'Crowd',
         fileName: 'crowd.wav',
       }],
@@ -27,12 +28,18 @@ const initialData: SoundScapesState = {
       name: 'Sound Scape 2',
       active: false,
       soundControllers: [{
+        id: '2',
         name: 'Laser',
         fileName: 'laser.wav',
         playMode: SoundPlayMode.SingleBlock,
       }, {
+        id: '3',
         name: 'Kick Drum',
         fileName: 'kick-drum.wav',
+      }, {
+        id: '4',
+        name: 'Crowd',
+        fileName: 'crowd.wav',
       }],
     }
   ],

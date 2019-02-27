@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import { WaveformView as _WaveformView } from './WaveformView'
 import { SoundView } from './SoundView'
 import { Sound } from '../Models/Sound'
+import { theme } from '../../Global'
 
 interface Props {
   name: string
@@ -46,8 +47,15 @@ export class SoundControllerView extends React.Component<Props> {
   // }
 }
 
+const Name = styled.h3({
+  padding: 0,
+  margin: 0,
+})
+
 const View = styled.div({
-  background: '#eeeeee',
+  background: theme.color.background.tertiary,
+  borderRadius: 6,
+  padding: 10,
 })
 
 const WaveformView = styled(_WaveformView)({
@@ -56,12 +64,4 @@ const WaveformView = styled(_WaveformView)({
 
 const WaveformContainer = styled.div({
   position: 'relative',
-})
-
-const Name = styled.div({
-  fontWeight: 500,
-})
-
-const Button = styled.button({
-  
 })

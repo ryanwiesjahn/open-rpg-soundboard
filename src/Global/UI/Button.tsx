@@ -1,15 +1,14 @@
-
 import styled from '@emotion/styled'
 import { theme } from '../../Global/UI'
 import chroma from 'chroma-js'
 
-interface Props {
+export interface ButtonProps {
   secondary?: boolean
   tertiary?: boolean
   bordered?: boolean
 }
 
-export const Button = styled.button((props: Props) => ({
+export const Button = styled.button((props: ButtonProps) => ({
   background: props.bordered ? 'transparent' : theme.color.brand.primary,
   border: '1px solid transparent',
   borderTopColor: props.bordered ? undefined : 'rgba(255, 255, 255, 0.3)',
@@ -37,7 +36,7 @@ export const Button = styled.button((props: Props) => ({
   ...(props.tertiary && tertiaryStyles(props)),
 }))
 
-const secondaryStyles = (props: Props) => ({
+const secondaryStyles = (props: ButtonProps) => ({
   background: props.bordered ? 'transparent' : theme.color.background.tertiary,
   borderColor: props.bordered ? theme.color.background.tertiary : undefined,
 
@@ -46,7 +45,7 @@ const secondaryStyles = (props: Props) => ({
   },
 })
 
-const tertiaryStyles = (props: Props) => ({
+const tertiaryStyles = (props: ButtonProps) => ({
   background: 'transparent',
   border: `1px dotted ${theme.color.text.softer}`,
   color: theme.color.text.softer,

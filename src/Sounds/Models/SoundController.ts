@@ -11,14 +11,20 @@ export enum SoundPlayMode {
 }
 
 export interface SoundControllerParams {
+  id: UUID
   name: string
   fileName: string
+  timeBetween: NumberRange
+  timeBetweenIsRange?: boolean
   playMode?: SoundPlayMode
 }
 
 export class SoundController implements SoundControllerParams {
+  public readonly id: UUID
   public readonly name: string
   public readonly fileName: string
+  public readonly timeBetween: NumberRange
+  public readonly timeBetweenIsRange: boolean
   public readonly playMode: SoundPlayMode
 
   private howl: Howl
@@ -29,12 +35,18 @@ export class SoundController implements SoundControllerParams {
   private soundConfig: SoundConfig = {}
 
   constructor({
+    id,
     name,
     fileName,
+    timeBetween,
+    timeBetweenIsRange = true,
     playMode = SoundPlayMode.Multiple,
   }: SoundControllerParams) {
+    this.id = id
     this.name = name
     this.fileName = fileName
+    this.timeBetween = timeBetween
+    this.timeBetweenIsRange = timeBetweenIsRange
     this.playMode = playMode
 
     this.howl = new Howl({
