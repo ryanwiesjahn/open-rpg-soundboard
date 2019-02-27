@@ -9,15 +9,17 @@ interface Props {
 
 export class SoundControllerContainer extends React.Component<Props> {
   public render() {
+    const { soundController, className } = this.props
+    
     return (
       <SoundControllerView
-        name={this.props.soundController.name}
-        fileSrc={this.props.soundController.fileSrc}
-        sounds={this.props.soundController.sounds}
+        name={soundController.name}
+        fileSrc={soundController.fileSrc}
+        sounds={soundController.sounds}
         onPlay={this.onPlay}
         onChangeRate={this.onChangeRate}
         onChangeVolume={this.onChangeVolume}
-        className={this.props.className}
+        className={className}
       />
     )
   }

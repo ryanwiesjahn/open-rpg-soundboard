@@ -1,11 +1,15 @@
 const audioContext = new AudioContext();
 
-export class Waveform {
-  private fileSrc: string
+export interface WaveformParams {
+  fileSrc: string
+}
+
+export class Waveform implements WaveformParams {
+  public readonly fileSrc: string
   private _audioBuffer?: AudioBuffer
 
-  constructor(fileSrc: string) {
-    this.fileSrc = fileSrc
+  constructor(params: WaveformParams) {
+    this.fileSrc = params.fileSrc
   }
 
   public async getAudioBuffer(): Promise<AudioBuffer> {

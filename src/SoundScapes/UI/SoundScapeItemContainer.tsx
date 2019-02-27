@@ -9,12 +9,14 @@ interface Props {
 
 export class SoundScapeItemContainer extends React.Component<Props> {
   public render() {
+    const { soundScape, className } = this.props
+
     return (
       <SoundScapeItemView
-        className={this.props.className}
-        id={this.props.soundScape.id}
-        name={this.props.soundScape.name}
-        active={this.props.soundScape.active}
+        className={className}
+        id={soundScape.id}
+        name={soundScape.name}
+        active={soundScape.active}
       />
     )
   }

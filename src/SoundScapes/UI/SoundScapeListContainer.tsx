@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { v4 as uuid } from 'uuid'
 import { SoundScapeListView } from './SoundScapeListView'
-import { SoundScape, ISoundScape } from '../Models/SoundScape'
+import { SoundScape, SoundScapeParams } from '../Models/SoundScape'
 import { soundScapesSelector, soundScapeAddAction } from '../Store'
 import { AppState } from '../../App'
 import { Dispatch } from '../../Global'
 
 interface Props {
   soundScapes: SoundScape[]
-  soundScapeAdd: (soundScape: ISoundScape) => void
+  soundScapeAdd: (soundScape: SoundScapeParams) => void
   className?: string
 }
 
@@ -40,7 +40,7 @@ const mapStateToProps = () => (state: AppState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  soundScapeAdd: (soundScape: ISoundScape) => {
+  soundScapeAdd: (soundScape: SoundScapeParams) => {
     dispatch(soundScapeAddAction(soundScape))
   },
 })

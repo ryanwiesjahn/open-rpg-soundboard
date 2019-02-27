@@ -15,8 +15,10 @@ interface Props {
 
 export class SoundScapeListView extends React.Component<Props> {
   public render() {
+    const { className } = this.props
+
     return (
-      <View className={this.props.className}>
+      <View className={className}>
         {this.renderSoundScapeItems()}
         <Button tertiary onClick={this.onClick}>
           <Icon />

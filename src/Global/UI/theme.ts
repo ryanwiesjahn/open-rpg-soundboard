@@ -19,5 +19,10 @@ export const theme = {
   },
   font: {
     body: 'Roboto, Helvetica, Arial, sans-serif',
+  },
+  layout: {
+    page: {
+      padding: 10,
+    }
   }
 }

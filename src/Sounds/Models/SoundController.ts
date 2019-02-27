@@ -2,7 +2,7 @@ import { Howl } from 'howler'
 import _ from 'lodash'
 import { Sound, SoundConfig } from './Sound'
 
-const SOUNDS_ASSETS_PATH = '../../assets/sounds/'
+const SOUNDS_ASSETS_PATH = '/assets/sounds/'
 
 export enum SoundPlayMode {
   Multiple,
@@ -10,13 +10,13 @@ export enum SoundPlayMode {
   SingleRestart,
 }
 
-interface SoundParams {
+export interface SoundControllerParams {
   name: string
   fileName: string
   playMode?: SoundPlayMode
 }
 
-export class SoundController {
+export class SoundController implements SoundControllerParams {
   public readonly name: string
   public readonly fileName: string
   public readonly playMode: SoundPlayMode
@@ -32,7 +32,7 @@ export class SoundController {
     name,
     fileName,
     playMode = SoundPlayMode.Multiple,
-  }: SoundParams) {
+  }: SoundControllerParams) {
     this.name = name
     this.fileName = fileName
     this.playMode = playMode
@@ -111,3 +111,6 @@ export class SoundController {
     return `${SOUNDS_ASSETS_PATH}${this.fileName}`
   }
 }
+
+export const hydrateSoundController = (params: SoundControllerParams) => new SoundController(params)
+export const hydrateSoundControllers = (list?: SoundControllerParams[]) => list ? list.map(hydrateSoundController) : []

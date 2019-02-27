@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { SoundScapeView } from './SoundScapeView'
 import { SoundScape } from '../Models'
-import { AppState } from '../../App'
+import { AppState, NotFoundView } from '../../App'
 import { soundScapeSelector } from '../Store'
 
 interface Props {
@@ -14,11 +14,14 @@ class _SoundScapeContainer extends React.Component<Props> {
   public render() {
     const { soundScape } = this.props
 
-    return (
+    return (soundScape ? (
       <SoundScapeView
-        name={soundScape ? soundScape.name : 'NONE'}
+        name={soundScape.name}
+        soundControllers={soundScape.soundControllers}
       />
-    )
+    ) : (
+      <NotFoundView />
+    ))
   }
 }
 

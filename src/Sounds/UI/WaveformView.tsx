@@ -16,7 +16,9 @@ export class WaveformView extends React.Component<Props> {
   constructor(props: Props) {
     super(props)
 
-    this.waveform = new Waveform(props.fileSrc)
+    this.waveform = new Waveform({
+      fileSrc: props.fileSrc,
+    })
     this.containerViewRef = React.createRef()
     this.canvasRef = React.createRef()
   }
@@ -26,8 +28,10 @@ export class WaveformView extends React.Component<Props> {
   }
 
   public render() {
+    const { className } = this.props
+
     return (
-      <View ref={this.containerViewRef} className={this.props.className}>
+      <View ref={this.containerViewRef} className={className}>
         <ResizeObserver onResize={this.draw} />
         <Canvas ref={this.canvasRef} />
       </View>

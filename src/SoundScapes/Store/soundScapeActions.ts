@@ -1,4 +1,4 @@
-import { ISoundScape } from "../Models"
+import { SoundScapeParams } from "../Models"
 
 export enum SoundScapeActionTypes {
   Add = 'SOUND_SCAPE/ADD',
@@ -7,7 +7,7 @@ export enum SoundScapeActionTypes {
 
 export interface SoundScapeAddAction {
   type: SoundScapeActionTypes.Add
-  soundScape: ISoundScape
+  soundScape: SoundScapeParams
 }
 
 export interface SoundScapeRemoveAction {
@@ -15,7 +15,7 @@ export interface SoundScapeRemoveAction {
   id: UUID
 }
 
-export const soundScapeAddAction = (soundScape: ISoundScape): SoundScapeAddAction => ({
+export const soundScapeAddAction = (soundScape: SoundScapeParams): SoundScapeAddAction => ({
   type: SoundScapeActionTypes.Add,
   soundScape,
 })

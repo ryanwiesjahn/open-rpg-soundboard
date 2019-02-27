@@ -16,11 +16,13 @@ interface Props {
 
 export class SoundControllerView extends React.Component<Props> {
   public render() {
+    const { name, fileSrc, className } = this.props
+
     return (
-      <View className={this.props.className}>
-        <Name>{this.props.name}</Name>
+      <View className={className}>
+        <Name>{name}</Name>
         <WaveformContainer>
-          <WaveformView fileSrc={this.props.fileSrc} />
+          <WaveformView fileSrc={fileSrc} />
           {this.renderSounds()}
         </WaveformContainer>
       </View>

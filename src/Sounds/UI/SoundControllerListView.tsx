@@ -14,8 +14,10 @@ export class SoundControllerListView extends React.Component<Props> {
   }
 
   public render() {
+    const { className } = this.props
+
     return (
-      <View className={this.props.className}>
+      <View className={className}>
         {this.renderSoundControllers()}
       </View>
     )
