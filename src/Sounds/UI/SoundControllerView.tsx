@@ -4,6 +4,7 @@ import { WaveformView as _WaveformView } from './WaveformView'
 import { SoundView } from './SoundView'
 import { Sound } from '../Models/Sound'
 import { theme } from '../../Global'
+import { InputRange, Range } from '../../Global/UI/InputRange'
 
 interface Props {
   name: string
@@ -15,7 +16,18 @@ interface Props {
   className?: string
 }
 
-export class SoundControllerView extends React.Component<Props> {
+interface State {
+  value: Range
+}
+
+export class SoundControllerView extends React.Component<Props, State> {
+  public state: State = {
+    value: {
+      min: 11,
+      max: 13,
+    },
+  }
+
   public render() {
     const { name, fileSrc, className } = this.props
 
@@ -26,6 +38,13 @@ export class SoundControllerView extends React.Component<Props> {
           <WaveformView fileSrc={fileSrc} />
           {this.renderSounds()}
         </WaveformContainer>
+        <InputRange
+          draggableTrack
+          minValue={10}
+          maxValue={20}
+          value={this.state.value}
+          onChange={(value) => this.setState({ value: value as Range })}
+        />
       </View>
     )
   }

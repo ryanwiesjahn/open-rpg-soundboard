@@ -43,8 +43,6 @@ const MainButton = withProps<ButtonProps, any>({
   flex: 1,
 }).withComponent(Link))
 
-
-
 const PlayButton = withProps<ButtonProps, any>({
   secondary: true,
 })(styled(Button)((props: {
